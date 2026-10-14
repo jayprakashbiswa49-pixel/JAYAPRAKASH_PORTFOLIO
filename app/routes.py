@@ -30,6 +30,21 @@ def index():
     )
 
 
+@bp.route('/api/index', methods=['GET'], endpoint='vercel_index')
+def vercel_index_alias():
+    """Fallback route for Vercel when requests arrive with literal /api/index path."""
+    return index()
+
+
+@bp.route('/api/index/static/<path:filename>', methods=['GET'], endpoint='vercel_static')
+def vercel_static_fallback(filename):
+    """Fallback route for static assets when Vercel rewrites with an /api/index prefix."""
+    static_dir = os.path.join(current_app.root_path, 'static')
+    return send_from_directory(static_dir, filename)
+
+
+
+
 @bp.route('/resume', methods=['GET'])
 def download_resume():
     """Serves Jayaprakash Biswal's actual PDF resume with security checks."""

@@ -10,33 +10,30 @@ flask_app = create_app(os.environ.get("FLASK_ENV", "production"))
 
 
 class VercelPathFix:
-    """WSGI middleware to ensure PATH_INFO reflects the user's requested URL
+    """WSGI middleware ensuring Flask sees the original user URL path
 
-    when Vercel rewrites incoming requests to /api/index.
+    instead of internal rewrite targets.
     """
 
     def __init__(self, wsgi_app):
         self.wsgi_app = wsgi_app
 
     def __call__(self, environ, start_response):
-        # Vercel passes the original requested path in HTTP_X_MATCHED_PATH or HTTP_X_FORWARDED_URI
-        matched_path = (
-            environ.get("HTTP_X_MATCHED_PATH")
+        # 1. Prefer actual requested URI if provided by Vercel's proxy
+        raw_uri = (
+            environ.get("REQUEST_URI")
+            or environ.get("RAW_URI")
             or environ.get("HTTP_X_FORWARDED_URI")
-            or environ.get("REQUEST_URI")
         )
-        if matched_path:
-            environ["PATH_INFO"] = matched_path.split("?")[0]
-        elif environ.get("PATH_INFO", "").startswith("/api"):
+        if raw_uri:
+            environ["PATH_INFO"] = raw_uri.split("?")[0]
+        elif environ.get("PATH_INFO", "") in ("/api/index", "/api"):
             environ["PATH_INFO"] = "/"
 
         return self.wsgi_app(environ, start_response)
 
 
-# Wrap with WSGI path fixer
 flask_app.wsgi_app = VercelPathFix(flask_app.wsgi_app)
-
-# Expose 'app' for Vercel's Python Serverless runtime
 app = flask_app
 
 if __name__ == "__main__":

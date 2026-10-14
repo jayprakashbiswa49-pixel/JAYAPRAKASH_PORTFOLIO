@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO & Social Meta Tags -->
+  <title>{% block title %}Jayaprakash Biswal | Python Developer, Data Analyst & AI Enthusiast{% endblock %}</title>
+  <meta name="description" content="Portfolio of Jayaprakash Biswal — IT Management student, Python developer, and data analyst building practical web, AI, and analytical solutions.">
+  <meta name="keywords" content="Jayaprakash Biswal, Python Developer, Flask, Data Analyst, Machine Learning, NIIS Bhubaneswar, Glint Placement Portal">
+  <meta name="author" content="Jayaprakash Biswal">
+  <meta name="theme-color" content="#E8ECF1">
+
+  <!-- OpenGraph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jayaprakash Biswal — Developer Portfolio">
+  <meta property="og:description" content="Building useful digital experiences with Python, data, and AI. Explore projects in Flask, Scikit-learn, and Data Analytics.">
+  <meta property="og:image" content="{{ url_for('static', filename='images/jb-monogram.svg') }}">
+
+  <!-- CSRF Token Meta for AJAX Requests -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/jb-monogram.svg') }}">
+
+  <!-- Core Neumorphic Design System -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <!-- Neumorphic Fixed Navigation Bar -->
+  <header class="navbar" id="topNavbar">
+    <div class="container navbar-container">
+      <a href="{{ url_for('routes.index') }}#hero" class="brand-monogram" aria-label="Jayaprakash Biswal Home">
+        <div class="monogram-icon">
+          <img src="{{ url_for('static', filename='images/jb-monogram.svg') }}" alt="JB Logo" width="32" height="32">
+        </div>
+        <div>
+          <span class="brand-text">Jayaprakash Biswal</span>
+          <span class="brand-sub">Python &bull; Data &bull; Web</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Quick Actions -->
+      <div class="nav-cta">
+        <a href="{{ url_for('routes.download_resume') }}" class="btn btn-neu" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Resume</span>
+        </a>
+      </div>
+
+      <!-- Accessible Mobile Menu Toggle -->
+      <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" role="region" aria-label="Mobile Navigation">
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+      <li><a href="#about" class="mobile-nav-link">About</a></li>
+      <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+      <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+      <li><a href="#education" class="mobile-nav-link">Education &amp; Certifications</a></li>
+      <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      <li>
+        <a href="{{ url_for('routes.download_resume') }}" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+          Download Resume (PDF)
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- In-DOM Toast Container for Flash / Response Messages -->
+  <div class="toast-container" id="toastContainer" aria-live="polite">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="toast toast-{{ category }}" role="alert">
+            <span>{{ message }}</span>
+            <button type="button" class="toast-close" onclick="this.parentElement.remove()" aria-label="Close notification">&times;</button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Content Block -->
+  <main id="mainContent">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Neumorphic Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="monogram-icon" style="margin: 0 auto;">
+        <img src="{{ url_for('static', filename='images/jb-monogram.svg') }}" alt="JB Logo" width="36" height="36">
+      </div>
+      
+      <p style="font-weight: 700; color: var(--text-primary); margin-top: 4px;">
+        Jayaprakash Biswal
+      </p>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: -6px;">
+        BSc Information Technology Management &bull; NIIS Group of Institutions, Bhubaneswar
+      </p>
+
+      <div class="footer-links">
+        <a href="https://github.com/jayprakashbiswa49-pixel" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span style="color: var(--text-muted);">&bull;</span>
+        <a href="https://www.linkedin.com/in/jayaprakash-biswal-bb1937414" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span style="color: var(--text-muted);">&bull;</span>
+        <a href="mailto:jayprakashbiswa49@gmail.com" class="footer-link">Email</a>
+        <span style="color: var(--text-muted);">&bull;</span>
+        <a href="{{ url_for('routes.download_resume') }}" class="footer-link">Resume PDF</a>
+      </div>
+
+      <p class="footer-copy">
+        &copy; {{ current_year }} Jayaprakash Biswal. Crafted with Flask &amp; Neumorphic Design System.
+      </p>
+
+      <a href="#topNavbar" class="btn btn-neu back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+        <span>Back to Top</span>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Vanilla JS Engine -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

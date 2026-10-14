@@ -1,0 +1,463 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ========================================================================
+     1. HERO SECTION
+     ======================================================================== -->
+<section class="section hero-section" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left Column: Copy & Actions -->
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <span>Available for Internships &amp; Roles</span>
+        </div>
+
+        <h1 class="hero-heading">
+          Building useful digital experiences with <span class="gradient-text">Python, data, and AI.</span>
+        </h1>
+
+        <p class="hero-intro">
+          I'm Jayaprakash Biswal, an IT Management student passionate about Python development, data analysis, and practical AI-powered applications.
+        </p>
+
+        <!-- Primary Action Buttons -->
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            <span>Explore Projects</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="#contact" class="btn btn-neu">
+            <span>Contact Me</span>
+          </a>
+
+          <a href="{{ url_for('routes.download_resume') }}" class="btn btn-neu" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download Resume</span>
+          </a>
+        </div>
+
+        <!-- Verified Profiles -->
+        <div class="hero-socials">
+          <span class="hero-social-label">Profiles:</span>
+          
+          <a href="{{ profile.github_url }}" class="btn-icon" target="_blank" rel="noopener noreferrer" aria-label="Jayaprakash Biswal on GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+
+          <a href="{{ profile.linkedin_url }}" class="btn-icon" target="_blank" rel="noopener noreferrer" aria-label="Jayaprakash Biswal on LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Abstract Tactile Neumorphic Illustration -->
+      <div class="hero-visual">
+        <div class="hero-illustration-wrapper">
+          <img src="{{ url_for('static', filename='images/hero-illustration.svg') }}" alt="Neumorphic Python, Data, and Machine Learning Illustration" width="540" height="440">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     2. ABOUT SECTION
+     ======================================================================== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">Education &amp; Engineering Focus</h2>
+      <p class="section-subtitle">
+        Bridging the gap between software engineering, data management, and practical business intelligence.
+      </p>
+    </div>
+
+    <!-- Main About Raised Card -->
+    <div class="neu-raised about-card">
+      <div class="about-grid">
+        <div class="about-text-content">
+          <h3 style="margin-bottom: 1rem; color: var(--text-primary);">
+            Third-Year IT Management Student &amp; Developer
+          </h3>
+          <p>
+            {{ profile.about_text }}
+          </p>
+          <p>
+            I believe that great software is built on solid fundamentals — clean data contracts, resilient backend APIs, and accessible interfaces that present information clearly without unnecessary complexity.
+          </p>
+        </div>
+
+        <!-- Inset Snapshot Card -->
+        <div class="about-profile-snapshot">
+          <div class="snapshot-item">
+            <span class="snapshot-label">Full Name</span>
+            <span class="snapshot-value">{{ profile.name }}</span>
+          </div>
+          <div class="snapshot-item">
+            <span class="snapshot-label">Institution</span>
+            <span class="snapshot-value">{{ education.institution }}</span>
+          </div>
+          <div class="snapshot-item">
+            <span class="snapshot-label">Program &amp; Year</span>
+            <span class="snapshot-value">{{ education.degree }} ({{ education.year }})</span>
+          </div>
+          <div class="snapshot-item">
+            <span class="snapshot-label">Current CGPA</span>
+            <span class="snapshot-value" style="color: var(--accent-positive);">{{ education.cgpa }} / 10</span>
+          </div>
+          <div class="snapshot-item">
+            <span class="snapshot-label">Location</span>
+            <span class="snapshot-value">{{ profile.location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Metrics Raised Grid -->
+    <div class="metrics-grid">
+      {% for stat in profile.stats %}
+      <div class="neu-raised metric-card">
+        <div class="metric-value">{{ stat.value }}</div>
+        <div class="metric-label">{{ stat.label }}</div>
+        <div class="metric-detail">{{ stat.detail }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     3. SKILLS SECTION
+     ======================================================================== -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Technical Skills</span>
+      <h2 class="section-title">Categorized Technical Competencies</h2>
+      <p class="section-subtitle">
+        Core languages, modern frameworks, and data analytics tools practiced through hands-on projects and coursework.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      {% for group in skill_groups %}
+      <div class="neu-raised skill-group-card">
+        <div class="skill-group-header">
+          <div class="skill-icon-bubble">
+            {% if group.icon == 'code' %}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            {% elif group.icon == 'globe' %}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            {% elif group.icon == 'bar-chart' %}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            {% elif group.icon == 'cpu' %}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+            {% else %}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            {% endif %}
+          </div>
+          <div>
+            <h3 class="skill-group-title">{{ group.category }}</h3>
+            <span class="skill-group-desc">{{ group.description }}</span>
+          </div>
+        </div>
+
+        <div class="skill-chips">
+          {% for skill in group.skills %}
+          <span class="skill-chip">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     4. FEATURED PROJECTS SECTION
+     ======================================================================== -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Portfolio Work</span>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        Real-world applications, machine learning systems, and data analytics studies backed by public source code.
+      </p>
+    </div>
+
+    <!-- Category Filter Controls -->
+    <div class="project-filters">
+      {% for cat in categories %}
+      <button type="button" class="filter-btn {% if cat.id == 'all' %}active{% endif %}" data-filter="{{ cat.id }}">
+        {{ cat.name }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      {% for project in projects %}
+      <article class="neu-raised project-card {% if project.featured %}featured-priority-{{ project.priority }}{% endif %}" data-category="{{ project.category }}">
+        <div class="project-header">
+          <span class="project-badge {% if project.priority == 1 %}badge-flagship{% endif %}">
+            {{ project.badge }}
+          </span>
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted);">
+            {{ project.category_label }}
+          </span>
+        </div>
+
+        <h3 class="project-title">{{ project.title }}</h3>
+        
+        <p class="project-desc">{{ project.description }}</p>
+
+        <!-- Highlights list -->
+        <ul class="project-highlights">
+          {% for hl in project.highlights %}
+          <li>{{ hl }}</li>
+          {% endfor %}
+        </ul>
+
+        <!-- Technology Pills -->
+        <div class="project-tech-tags">
+          {% for tech in project.tech_stack %}
+          <span class="tech-tag">{{ tech }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Action Links -->
+        <div class="project-actions">
+          {% if project.live_demo_url %}
+          <a href="{{ project.live_demo_url }}" class="btn btn-positive" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            </svg>
+            <span>Live Demo</span>
+          </a>
+          {% endif %}
+
+          <a href="{{ project.github_url }}" class="btn btn-neu" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     5. EDUCATION & CERTIFICATIONS SECTION
+     ======================================================================== -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Academics &amp; Credentials</span>
+      <h2 class="section-title">Education &amp; Certifications</h2>
+      <p class="section-subtitle">
+        Structured university degree and industry-recognized coursework in data science and full-stack development.
+      </p>
+    </div>
+
+    <div class="edu-cert-grid">
+      <!-- Education Column -->
+      <div class="neu-raised education-panel">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+          <span class="project-badge">Degree Program</span>
+          <span class="education-cgpa-pill">CGPA: {{ education.cgpa }}</span>
+        </div>
+
+        <h3 class="education-degree">{{ education.degree }}</h3>
+
+        <div class="education-meta">
+          <span class="education-inst">{{ education.institution }}</span>
+          <span style="color: var(--text-muted);">&bull;</span>
+          <span style="color: var(--text-muted); font-size: 0.9rem;">{{ education.location }}</span>
+        </div>
+
+        <div style="display: inline-block; padding: 4px 12px; background-color: var(--surface-inset); border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 700; width: fit-content;">
+          Current Status: {{ education.year }} (Expected Graduation: 2027)
+        </div>
+
+        <ul class="education-list">
+          {% for hl in education.highlights %}
+          <li>{{ hl }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Certifications Column -->
+      <div class="neu-raised certifications-panel">
+        <span class="project-badge" style="margin-bottom: 8px;">Verified Coursework</span>
+        <h3 style="margin-bottom: 4px;">Professional Certifications</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">
+          Completed training programs focusing on data science pipelines, scripting, and web technologies.
+        </p>
+
+        <div class="certs-grid">
+          {% for cert in certifications %}
+          <div class="cert-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <span class="cert-title">{{ cert.title }}</span>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-positive); background: var(--accent-positive-subtle); padding: 2px 8px; border-radius: var(--radius-pill);">
+                {{ cert.category }}
+              </span>
+            </div>
+            <div class="cert-issuer">Issued by: {{ cert.issuer }}</div>
+            <div class="cert-focus">{{ cert.focus }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     6. CONTACT SECTION
+     ======================================================================== -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Get in Touch</span>
+      <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+      <p class="section-subtitle">
+        Have an internship opportunity, project collaboration, or data query? Send a message directly.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Information Panel -->
+      <div class="neu-raised contact-info-panel">
+        <h3 style="margin-bottom: 4px;">Contact Information</h3>
+        <p style="font-size: 0.95rem;">
+          I am currently based in Bhubaneswar, Odisha, India and open to discussions regarding internship roles, freelance web development, or data analytics projects.
+        </p>
+
+        <div class="contact-detail-item">
+          <div class="contact-icon-bubble">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <span class="contact-label">Email Address</span>
+            <div class="contact-val">
+              <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-icon-bubble">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div>
+            <span class="contact-label">Location</span>
+            <div class="contact-val">{{ profile.location }}</div>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-icon-bubble">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </div>
+          <div>
+            <span class="contact-label">Professional Network</span>
+            <div class="contact-val">
+              <a href="{{ profile.linkedin_url }}" target="_blank" rel="noopener noreferrer">LinkedIn Profile &nearr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-icon-bubble">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <div>
+            <span class="contact-label">Open Source Work</span>
+            <div class="contact-val">
+              <a href="{{ profile.github_url }}" target="_blank" rel="noopener noreferrer">GitHub Repositories &nearr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inset Neumorphic Contact Form -->
+      <div class="neu-raised contact-form-panel">
+        <h3 style="margin-bottom: 1.5rem;">Send a Direct Message</h3>
+
+        <form id="contactForm" method="POST" action="{{ url_for('routes.submit_contact') }}" novalidate>
+          {{ form.csrf_token }}
+
+          <!-- Anti-bot Honeypot Field -->
+          <div class="hp-field" aria-hidden="true" tabindex="-1">
+            {{ form.hp_website.label }}
+            {{ form.hp_website(id="hp_website") }}
+          </div>
+
+          <div class="form-group">
+            <label for="name" class="form-label">{{ form.name.label.text }}</label>
+            {{ form.name(class="form-control", id="name") }}
+            {% if form.name.errors %}
+              <div class="form-error">{{ form.name.errors[0] }}</div>
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">{{ form.email.label.text }}</label>
+            {{ form.email(class="form-control", id="email") }}
+            {% if form.email.errors %}
+              <div class="form-error">{{ form.email.errors[0] }}</div>
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            <label for="subject" class="form-label">{{ form.subject.label.text }}</label>
+            {{ form.subject(class="form-control", id="subject") }}
+            {% if form.subject.errors %}
+              <div class="form-error">{{ form.subject.errors[0] }}</div>
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">{{ form.message.label.text }}</label>
+            {{ form.message(class="form-control", id="message") }}
+            {% if form.message.errors %}
+              <div class="form-error">{{ form.message.errors[0] }}</div>
+            {% endif %}
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span>Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
